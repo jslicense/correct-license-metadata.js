@@ -1,6 +1,6 @@
 {
   "name": "correct-license-metadata",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "interpret old-style npm licenses arrays and other aberrations",
   "author": "Kyle E. Mitchell <kyle@kemitchell.com> (https://kemitchell.com/)",
   "repository": "jslicense/correct-license-metadata.js",
