@@ -25,6 +25,17 @@ assert.strictEqual(
 
 assert.strictEqual(
   correct({
+    license: [ // old-style license array
+      {
+        type: 'MIT',
+        url: 'http://opensource.org/licenses/MIT'
+      }
+    ]
+  }),
+  'MIT'
+)
+assert.strictEqual(
+  correct({
     licenses: ['MIT'] // invalid
   }),
   'MIT'
