@@ -34,6 +34,14 @@ assert.strictEqual(
   }),
   'MIT'
 )
+
+assert.strictEqual(
+  correct({
+    license: "MIT/X11"
+  }),
+  'MIT'
+)
+
 assert.strictEqual(
   correct({
     licenses: ['MIT'] // invalid

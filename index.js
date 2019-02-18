@@ -9,9 +9,12 @@ module.exports = function (metadata) {
   if (singular && plural) return false
 
   var firstElement
+  var unambiguous
 
   if (singular) {
     if (isValidExpression(singular)) return singular
+    unambiguous = getUnambiguousCorrection(singular)
+    if (unambiguous) return unambiguous
     if (isOneElementArray(singular)) {
       if (isValidExpression(singular[0])) return singular[0]
     }
@@ -37,6 +40,17 @@ module.exports = function (metadata) {
     return false
   }
 
+  return false
+}
+
+function getUnambiguousCorrection (argument) {
+  if (argument === 'Apache, Version 2.0') return 'Apache-2.0'
+  if (argument === 'Apache License, Version 2.0') return 'Apache-2.0'
+  if (argument === 'Apache 2.0') return 'Apache-2.0'
+  if (argument === 'Apache 2') return 'Apache-2.0'
+  if (argument === 'Apache v2') return 'Apache-2.0'
+  if (argument === 'MIT/X11') return 'MIT'
+  if (argument === 'LGPL 3') return 'LGPL-3.0'
   return false
 }
 
