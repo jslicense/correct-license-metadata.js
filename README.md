@@ -1,3 +1,5 @@
+interpret old-style npm licenses arrays and other aberrations
+
 ```javascript
 var correct = require('correct-license-metadata')
 var assert = require('assert')
