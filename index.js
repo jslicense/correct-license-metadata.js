@@ -6,40 +6,41 @@ module.exports = function (metadata) {
   var singular = metadata.license
   var plural = metadata.licenses
 
-  if (singular && plural) return false
+  var conclusionFromSingular = singular && conclusionFrom(singular)
+  var conclusionFromPlural = plural && conclusionFrom(plural)
 
-  var firstElement
-  var unambiguous
-
-  if (singular) {
-    if (isValidExpression(singular)) return singular
-    unambiguous = getUnambiguousCorrection(singular)
-    if (unambiguous) return unambiguous
-    if (isOneElementArray(singular)) {
-      firstElement = singular[0]
-      if (isValidExpression(firstElement)) return firstElement
-      if (typeof firstElement === 'object') {
-        if (isValidExpression(firstElement.type)) return firstElement.type
-      }
+  // If `package.json` has both `license` and `licenses`.
+  if (singular && plural) {
+    if (conclusionFromSingular === conclusionFromPlural) {
+      return conclusionFromSingular
     }
     return false
   }
 
-  if (plural) {
-    if (isValidExpression(plural)) return plural
-    unambiguous = getUnambiguousCorrection(singular)
+  if (conclusionFromSingular) return conclusionFromSingular
+  if (conclusionFromPlural) return conclusionFromPlural
+
+  return false
+}
+
+function conclusionFrom (argument) {
+  var unambiguous, firstElement, type
+
+  if (typeof argument === 'string') {
+    if (isValidExpression(argument)) return argument
+    unambiguous = getUnambiguousCorrection(argument)
     if (unambiguous) return unambiguous
-    if (isOneElementArray(plural)) {
-      firstElement = plural[0]
-      if (isValidExpression(firstElement)) return firstElement
-      if (typeof firstElement === 'object') {
-        var type = firstElement.type
-        if (isValidExpression(type)) return type
-        unambiguous = getUnambiguousCorrection(type)
-        if (unambiguous) return unambiguous
-      }
+  }
+
+  if (isOneElementArray(argument)) {
+    firstElement = argument[0]
+    if (isValidExpression(firstElement)) return firstElement
+    if (typeof firstElement === 'object') {
+      type = firstElement.type
+      if (isValidExpression(type)) return type
+      unambiguous = getUnambiguousCorrection(type)
+      if (unambiguous) return unambiguous
     }
-    return false
   }
 
   return false
