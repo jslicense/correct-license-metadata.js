@@ -67,6 +67,7 @@ function getUnambiguousCorrection (argument) {
   if (argument === 'Apache v2') return 'Apache-2.0'
   if (argument === 'MIT/X11') return 'MIT'
   if (argument === 'LGPL 3') return 'LGPL-3.0'
+  if (argument === 'The MIT License') return 'MIT'
   return false
 }
 
