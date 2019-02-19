@@ -52,6 +52,8 @@ function conclusionFrom (argument) {
 function conclusionFromObject (object) {
   var type = object.type
   if (isValidExpression(type)) return type
+  var license = object.license
+  if (isValidExpression(license)) return license
   var unambiguous = getUnambiguousCorrection(type)
   if (unambiguous) return unambiguous
   return false
