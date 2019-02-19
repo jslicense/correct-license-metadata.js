@@ -28,7 +28,7 @@ assert.strictEqual(
   correct({
     licenses: [
       {
-        type: 'Apache License 2.0',
+        type: 'Apache License 2.0', // invalid SPDX ID
         url: 'https://github.com/Microsoft/tslib/blob/master/LICENSE.txt'
       }
     ]
