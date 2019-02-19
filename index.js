@@ -74,6 +74,7 @@ function getUnambiguousCorrection (argument) {
   if (argument === 'MIT +no-false-attribs') return 'MITNFA'
   if (argument === 'BSD-3') return 'BSD-3-Clause'
   if (argument === 'BSD 3-Clause') return 'BSD-3-Clause'
+  if (argument === 'MPL 2.0') return 'MPL-2.0'
   return false
 }
 
