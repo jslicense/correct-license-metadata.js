@@ -72,6 +72,7 @@ function getUnambiguousCorrection (argument) {
   if (argument === 'The MIT License') return 'MIT'
   if (argument === 'MIT +no-false-attribs') return 'MITNFA'
   if (argument === 'BSD-3') return 'BSD-3-Clause'
+  if (argument === 'BSD 3-Clause') return 'BSD-3-Clause'
   return false
 }
 
