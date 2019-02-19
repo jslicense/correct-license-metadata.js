@@ -46,6 +46,7 @@ module.exports = function (metadata) {
 function getUnambiguousCorrection (argument) {
   if (argument === 'Apache, Version 2.0') return 'Apache-2.0'
   if (argument === 'Apache License, Version 2.0') return 'Apache-2.0'
+  if (argument === 'Apache License 2.0') return 'Apache-2.0'
   if (argument === 'Apache 2.0') return 'Apache-2.0'
   if (argument === 'Apache 2') return 'Apache-2.0'
   if (argument === 'Apache v2') return 'Apache-2.0'
