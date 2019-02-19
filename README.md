@@ -23,6 +23,15 @@ assert.strictEqual(
   'MIT'
 )
 
+assert.strictEqual(
+  correct({
+    license: {
+      type: 'MIT',
+      url: 'https://github.com/isaacs/rimraf/raw/master/LICENSE'
+    }
+  }),
+  'MIT'
+)
 
 assert.strictEqual(
   correct({

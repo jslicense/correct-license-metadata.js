@@ -24,7 +24,7 @@ module.exports = function (metadata) {
 }
 
 function conclusionFrom (argument) {
-  var unambiguous, firstElement, type
+  var unambiguous, firstElement, fromObject
 
   if (typeof argument === 'string') {
     if (isValidExpression(argument)) return argument
@@ -36,13 +36,24 @@ function conclusionFrom (argument) {
     firstElement = argument[0]
     if (isValidExpression(firstElement)) return firstElement
     if (typeof firstElement === 'object') {
-      type = firstElement.type
-      if (isValidExpression(type)) return type
-      unambiguous = getUnambiguousCorrection(type)
-      if (unambiguous) return unambiguous
+      fromObject = conclusionFromObject(firstElement)
+      if (fromObject) return fromObject
     }
   }
 
+  if (typeof argument === 'object') {
+    fromObject = conclusionFromObject(argument)
+    if (fromObject) return fromObject
+  }
+
+  return false
+}
+
+function conclusionFromObject (object) {
+  var type = object.type
+  if (isValidExpression(type)) return type
+  var unambiguous = getUnambiguousCorrection(type)
+  if (unambiguous) return unambiguous
   return false
 }
 
