@@ -16,9 +16,6 @@ module.exports = function (metadata) {
     unambiguous = getUnambiguousCorrection(singular)
     if (unambiguous) return unambiguous
     if (isOneElementArray(singular)) {
-      if (isValidExpression(singular[0])) return singular[0]
-    }
-    if (isOneElementArray(singular)) {
       firstElement = singular[0]
       if (isValidExpression(firstElement)) return firstElement
       if (typeof firstElement === 'object') {
@@ -30,11 +27,16 @@ module.exports = function (metadata) {
 
   if (plural) {
     if (isValidExpression(plural)) return plural
+    unambiguous = getUnambiguousCorrection(singular)
+    if (unambiguous) return unambiguous
     if (isOneElementArray(plural)) {
       firstElement = plural[0]
       if (isValidExpression(firstElement)) return firstElement
       if (typeof firstElement === 'object') {
-        if (isValidExpression(firstElement.type)) return firstElement.type
+        var type = firstElement.type
+        if (isValidExpression(type)) return type
+        unambiguous = getUnambiguousCorrection(type)
+        if (unambiguous) return unambiguous
       }
     }
     return false

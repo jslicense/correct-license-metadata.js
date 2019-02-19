@@ -23,6 +23,19 @@ assert.strictEqual(
   'MIT'
 )
 
+
+assert.strictEqual(
+  correct({
+    licenses: [
+      {
+        type: 'Apache License 2.0',
+        url: 'https://github.com/Microsoft/tslib/blob/master/LICENSE.txt'
+      }
+    ]
+  }),
+  'Apache-2.0'
+)
+
 assert.strictEqual(
   correct({
     license: [ // old-style license array
