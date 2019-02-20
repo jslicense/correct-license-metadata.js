@@ -5,9 +5,7 @@ var correct = require('correct-license-metadata')
 var assert = require('assert')
 
 assert.strictEqual(
-  correct({
-    license: '(MIT OR GPL-2.0-only)' // valid metadata
-  }),
+  correct({ license: '(MIT OR GPL-2.0-only)' }), // valid metadata
   '(MIT OR GPL-2.0-only)'
 )
 
@@ -58,16 +56,12 @@ assert.strictEqual(
 )
 
 assert.strictEqual(
-  correct({
-    license: "MIT/X11"
-  }),
+  correct({ license: "MIT/X11" }),
   'MIT'
 )
 
 assert.strictEqual(
-  correct({
-    licenses: ['MIT'] // invalid
-  }),
+  correct({ licenses: ['MIT'] }), // invalid
   'MIT'
 )
 
@@ -80,9 +74,7 @@ assert.strictEqual(
 )
 
 assert.throws(
-  function () {
-    correct('not an object')
-  },
+  function () { correct('not an object') },
   /argument must be an object/
 )
 ```
