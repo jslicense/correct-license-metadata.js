@@ -31,17 +31,19 @@ assert.strictEqual(
   'MIT'
 )
 
-assert.strictEqual(
-  correct({
-    licenses: [
-      {
-        type: 'Apache License 2.0', // invalid SPDX ID
-        url: 'https://github.com/Microsoft/tslib/blob/master/LICENSE.txt'
-      }
-    ]
-  }),
-  'Apache-2.0'
-)
+;['Apache License 2.0', 'Apache-2', 'Apache'].forEach(function (id) {
+  assert.strictEqual(
+    correct({
+      licenses: [
+        {
+          type: id,
+          url: 'https://github.com/Microsoft/tslib/blob/master/LICENSE.txt'
+        }
+      ]
+    }),
+    'Apache-2.0'
+  )
+})
 
 assert.strictEqual(
   correct({
